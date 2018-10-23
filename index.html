@@ -5,10 +5,133 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
+    <style>
+        button{
+            width:50px;
+            height:50px;
+            border:0.2px solid #ddd;
+            background:#fff;
+        }
+        .press {
+            background:#ddd;
+            width:55px;
+            height:55px;
+            -webkit-transition: width 0.05s;
+            transition: width 0.05s;
+        }
+        .butt-wrapp{
+            width:300px;
+            height:70px;
+            margin:0 auto;
+        }
+        .track{
+            width:100%;
+            height:120px;
+            background: #ddd;
+        }
+    </style>
 </head>
 <body>
+    <audio id="99" src="" controls hidden></audio>
+    <audio id="118" src="" controls hidden></audio>
+    <audio id="98" src="" controls hidden></audio>
+    <audio id="110" src="" controls hidden></audio>
+    <audio id="109" src="" controls hidden></audio>
+    <div class="butt-wrapp">
+    <button id="butt99">C</button>
+    <button id="butt118">V</button>
+    <button id="butt98">B</button>
+    <button id="butt110">N</button>
+    <button id="butt109">M</button>
+    </div>
+
+    <button id="rec">REC</button><br>
+    <input type="radio" name="active" value="1"/>
+    <div class="track" id="track1">
+
+    </div>
+    <input type="radio" name="active" value="2"/>
+    <div  class="track" id="track2">
+
+    </div>
+    <input type="radio" name="active" value="3"/>
+    <div  class="track" id="track3">
+
+    </div>
+    <input type="radio" name="active" value="4"/>
+    <div  class="track" id="track4">
+
+    </div>
     <script>
-        
+        const recButt = document.getElementById("rec");
+        let recording = false;
+        let firstTrack = {};
+        let secondTrack = {};
+        let thirdTrack = {};
+        let fourthTrack = {};
+
+        function run(key){
+            let thatkey = document.getElementById(key);
+            let thatbutt = document.getElementById("butt"+key)
+            thatkey.currentTime = 0;
+            // thatkey.play();
+            thatbutt.classList.add("press");
+            setInterval(function(){ thatbutt.classList.remove("press") }, 50);
+            
+        }
+
+        function rec(truckNumb, ){
+
+        }
+
+recButt.addEventListener('click', (e)=>{
+    let selTrack = document.getElementsByName("active");
+    let val;
+    let startTime = new Date(currentTime);
+    console.log(startTime);
+    for (var i=0, len=selTrack.length; i<len; i++) {
+        if ( selTrack[i].checked ) { 
+            val = selTrack[i].value; 
+            break; 
+        }
+    }
+    recording = true;
+    switch(val){
+        case 1:
+            rec(1, firstTrack);
+        case 2:
+            rec(2, secondTrack);
+        case 3:
+            rec(3, thirdTrack);
+        case 4:
+            rec(4, fourthTrack);
+    }
+
+
+})
+
+
+        document.body.addEventListener('keypress', (e)=>{
+            let key = e.keyCode;
+
+            switch(key){
+                case 99:
+                    run(key);
+                case 118:
+                    run(key);
+                case 98:
+                    run(key);
+                case 110:
+                    run(key);
+                case 109:
+                    run(key);
+            }
+        })
+
+
+
+
     </script>
     
 </body>
