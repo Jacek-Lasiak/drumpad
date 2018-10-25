@@ -78,7 +78,6 @@
 
     </div>
     <script>
-
         const recButt = document.getElementById("rec");
         const playButt = document.getElementById("playOn");
         const keyArr = [99, 118, 98, 110, 109];
@@ -89,18 +88,17 @@
         let recording = false;
         let playing = false;
         let startTime = 0;
-        let firstTrack = { steps: [] }
-        let secondTrack = { steps: [] }
-        let thirdTrack = { steps: [] }
-        let fourthTrack = { steps: [] }
+        let firstTrack = [];
+        let secondTrack = [];
+        let thirdTrack = [];
+        let fourthTrack = [];
 
-        function run(key) {
+        function run(key) { 
             if (!keyArr.includes(key)) return;
             let selTrack = document.getElementsByName("active");
             let timeUpdate = Date.now();
             startTime != 0 ? (timeUpdate -= startTime) : timeUpdate = 0;
             let gridTap = Math.floor(timeUpdate / 60);
-            console.log(gridTap)
             let thatkey = document.getElementById(key);
             let thatbutt = document.getElementById("butt" + key)
             thatkey.currentTime = 0;
@@ -115,10 +113,9 @@
                     switch (parseInt(val)) {
                         case 1:
                             {
-                                firstTrack['steps'].push(...[
+                                firstTrack.push(...[
                                     [timeUpdate, key],
                                 ]);
-                                console.log(firstTrack);
                                 let tap = document.createElement("Span");
                                 tap.style.gridColumn = gridTap;
                                 trackDiv1.appendChild(tap);
@@ -126,10 +123,9 @@
                             }
                         case 2:
                             {
-                                secondTrack['steps'].push(...[
+                                secondTrack.push(...[
                                     [timeUpdate, key],
                                 ]);
-                                console.log(secondTrack);
                                 let tap = document.createElement("Span");
                                 tap.style.gridColumn = gridTap;
                                 trackDiv2.appendChild(tap);
@@ -137,10 +133,9 @@
                             }
                         case 3:
                             {
-                                thirdTrack['steps'].push(...[
+                                thirdTrack.push(...[
                                     [timeUpdate, key],
                                 ]);
-                                console.log(thirdTrack);
                                 let tap = document.createElement("Span");
                                 tap.style.gridColumn = gridTap;
                                 trackDiv3.appendChild(tap);
@@ -148,10 +143,9 @@
                             }
                         case 4:
                             {
-                                fourthTrack['steps'].push(...[
+                                fourthTrack.push(...[
                                     [timeUpdate, key],
                                 ]);
-                                console.log(fourthTrack);
                                 let tap = document.createElement("Span");
                                 tap.style.gridColumn = gridTap;
                                 trackDiv4.appendChild(tap);
@@ -185,28 +179,28 @@
                 playButt.classList.add("press");
                 setTimeout(function () { playButt.classList.remove("press") }, 500);
 
-                firstTrack["steps"].forEach(element => {
+                firstTrack.forEach(element => {
                     setTimeout(function () {
                         let thatkey = document.getElementById(element[1]);
                         thatkey.currentTime = 0;
                         thatkey.play();
                     }, element[0]);
                 });
-                secondTrack["steps"].forEach(element => {
+                secondTrack.forEach(element => {
                     setTimeout(function () {
                         let thatkey = document.getElementById(element[1]);
                         thatkey.currentTime = 0;
                         thatkey.play();
                     }, element[0]);
                 });
-                thirdTrack["steps"].forEach(element => {
+                thirdTrack.forEach(element => {
                     setTimeout(function () {
                         let thatkey = document.getElementById(element[1]);
                         thatkey.currentTime = 0;
                         thatkey.play();
                     }, element[0]);
                 });
-                fourthTrack["steps"].forEach(element => {
+                fourthTrack.forEach(element => {
                     setTimeout(function () {
                         let thatkey = document.getElementById(element[1]);
                         thatkey.currentTime = 0;
